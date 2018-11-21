@@ -5,12 +5,8 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,client)=>{
         return console.log('Unable to connect to the mongoDataBase');
     }
     const db = client.db('TodoApp');
-    db.collection('TodoApp').find().toArray().then((docs)=>{
-        console.log('TODOS');
-        console.log(JSON.stringify(docs,undefined,2));
-    },(err)=>{
-        console.log('Unable to fetch the documents',err);
+    db.collection('TodoApp').deleteOne({Completed:true}).then((result)=>{
+        console.log(result);
     });
-    //client.close();
+    // client.close();
 });
- 
